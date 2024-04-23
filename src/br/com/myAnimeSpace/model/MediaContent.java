@@ -13,8 +13,7 @@ public abstract class MediaContent {
     private String review;
     private double rating;
     
-    
-    public MediaContent(String title, List<String> gender, String author, boolean status, int ageGroup) {
+    public MediaContent(String title, List<String> gender,String author, boolean status, int ageGroup) {
         this.title = title;
         this.gender = gender;
         this.author = author;
@@ -22,11 +21,14 @@ public abstract class MediaContent {
         this.ageGroup = ageGroup;
     }
 
+    public String printInfo(){
+        return "";
+    }
 
     @Override
     public String toString() {
-        return "Description [title=" + title + ", gender=" + gender + ", author=" + author + ", status=" + status
-                + ", ageGroup=" + ageGroup + ", rating=" + rating + "]";
+        return "Description\n Title=" + title + ", gender=" + gender + ", author=" + author + ", status=" + status
+                + ", ageGroup=" + ageGroup + ", rating=" + rating;
     }
 
 

@@ -18,5 +18,10 @@ public class Manga extends MediaContent{
         this.chapters = chapters;
     }
 
-        
+    @Override
+    public String printInfo() {
+        return "Title: " + getTitle() + ", Gender: " + getGender() + ", Author: " + getAuthor();
+    }
+
+    
 }
