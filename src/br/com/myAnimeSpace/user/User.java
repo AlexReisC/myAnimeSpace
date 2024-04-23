@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.ArrayList;
 
 import br.com.myAnimeSpace.model.MediaContent;
@@ -67,10 +68,17 @@ public class User {
         }
         return true;
     }
-
-    public void searchByWord(List<MediaContent> list, String word){
-        List<MediaContent> byWord = list.stream().filter(m -> m.getTitle().contains(word)).collect(Collectors.toList());
-        System.out.println(byWord);
+    
+    public void search(List<MediaContent> list, Predicate<MediaContent> predicate){
+        List<String> titles = list.stream().filter(predicate).map(MediaContent::getTitle).collect(Collectors.toList());
+        System.out.println(titles);
     }
 
+    public void searchByWord(List<MediaContent> list, String word){
+        /* List<MediaContent> byWord = list.stream().filter(m -> m.getTitle().contains(word)).collect(Collectors.toList());
+        System.out.println(byWord); */
+        search(list, t -> t.getTitle().contains(word));
+    }
+
+    
 }
