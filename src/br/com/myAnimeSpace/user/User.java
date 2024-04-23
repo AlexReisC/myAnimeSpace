@@ -51,19 +51,22 @@ public class User {
         return "User: " + user ;
     }
 
-    private void register(String user, String password){
+    public boolean register(String user, String password){
         if(password.length() >= 8 || user.length() >= 1){
             this.user = user;
             this.password = password;
-        } else {
-            System.out.println("The password must be greater than or equal 8 characters and user cannot be empty.");
+            System.out.println("Register complete");
+            return true;
         }
+            System.out.println("The password must be greater than or equal 8 characters and user cannot be empty.");
+            return false;
     }
 
-    private boolean login(String user, String password){
+    public boolean login(String user, String password){
         if(!(this.user.equals(user)) || !(this.password.equals(password))){
             return false;
         }
+        System.out.println("Login sucess");
         return true;
     }
     
