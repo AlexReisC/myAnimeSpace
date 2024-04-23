@@ -3,6 +3,7 @@ package br.com.myAnimeSpace.user;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.ArrayList;
 
 import br.com.myAnimeSpace.model.MediaContent;
@@ -67,15 +68,9 @@ public class User {
         return true;
     }
 
-    public static Optional<MediaContent> search(List<MediaContent> list, Predicate<MediaContent> predicate){
-        MediaContent found = null;
-        for (MediaContent m : list) {
-            if(predicate.test(m)){
-                found = m;
-            }
-        }
-        return Optional.ofNullable(found);
+    public void searchByWord(List<MediaContent> list, String word){
+        List<MediaContent> byWord = list.stream().filter(m -> m.getTitle().contains(word)).collect(Collectors.toList());
+        System.out.println(byWord);
     }
-
 
 }
