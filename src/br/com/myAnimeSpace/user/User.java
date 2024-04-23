@@ -1,10 +1,8 @@
 package br.com.myAnimeSpace.user;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import java.util.ArrayList;
 
 import br.com.myAnimeSpace.model.MediaContent;
@@ -75,10 +73,14 @@ public class User {
     }
 
     public void searchByWord(List<MediaContent> list, String word){
-        /* List<MediaContent> byWord = list.stream().filter(m -> m.getTitle().contains(word)).collect(Collectors.toList());
-        System.out.println(byWord); */
         search(list, t -> t.getTitle().contains(word));
     }
 
-    
+    public void searchByTitle(List<MediaContent> list, String title){
+        search(list, t -> t.getTitle().equals(title));
+    }
+
+    public void searchByAuthor(List<MediaContent> list, String author){
+        search(list, t -> t.getAuthor().equals(author));
+    }
 }
