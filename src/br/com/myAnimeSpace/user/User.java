@@ -83,4 +83,8 @@ public class User {
     public void searchByAuthor(List<MediaContent> list, String author){
         search(list, t -> t.getAuthor().equals(author));
     }
+
+    public void searchByGender(List<MediaContent> list, String gender){
+        search(list, t -> t.getGender().contains(gender));
+    }
 }
