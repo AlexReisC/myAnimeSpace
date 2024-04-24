@@ -71,6 +71,9 @@ public class User {
     
     public List<MediaContent> search(List<MediaContent> list, Predicate<MediaContent> predicate){
         List<MediaContent> result = list.stream().filter(predicate).collect(Collectors.toList());
+        if(result.isEmpty()){
+            System.out.println("No result found");
+        }
         return result;
     }
 
