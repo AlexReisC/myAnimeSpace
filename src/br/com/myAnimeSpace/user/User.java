@@ -1,9 +1,11 @@
 package br.com.myAnimeSpace.user;
 
 import java.util.List;
+import java.util.Scanner;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 import br.com.myAnimeSpace.model.MediaContent;
 
@@ -12,10 +14,13 @@ public class User {
     private String user;
     private String password;
     private List<MediaContent> favorites;
+    private boolean loged = false;
+    Scanner scan;
     
     public User(String name) {
         this.name = name;
         this.favorites = new ArrayList<>();
+        scan = new Scanner(System.in);
     }
 
     public String getName() {
@@ -48,35 +53,29 @@ public class User {
     
     @Override
     public String toString() {
-        return "User: " + user ;
+        return "Name: " + name + ", User: " + user ;
     }
 
     public boolean register(String user, String password){
         if(password.length() >= 8 || user.length() >= 1){
             this.user = user;
             this.password = password;
-            System.out.println("Register complete");
             return true;
         }
-            System.out.println("The password must be greater than or equal 8 characters and user cannot be empty.");
-            return false;
+        return false;
     }
 
     public boolean login(String user, String password){
-        if(!(this.user.equals(user)) || !(this.password.equals(password))){
-            return false;
-        }
-        System.out.println("Login sucess");
-        return true;
+        return loged = this.user.equals(user) && this.password.equals(password) ? true : false;
     }
     
-    public void search(List<MediaContent> list, Predicate<MediaContent> predicate){
+    public List<MediaContent> search(List<MediaContent> list, Predicate<MediaContent> predicate){
         List<MediaContent> result = list.stream().filter(predicate).collect(Collectors.toList());
-        System.out.println(result);
+        return result;
     }
 
     public void searchByWord(List<MediaContent> list, String word){
-        search(list, t -> t.getTitle().contains(word));
+        System.out.println(search(list, t -> t.getTitle().contains(word)));
     }
 
     public void searchByTitle(List<MediaContent> list, String title){
@@ -90,4 +89,34 @@ public class User {
     public void searchByGender(List<MediaContent> list, String gender){
         search(list, t -> t.getGender().contains(gender));
     }
+
+    public void reviewMedia(List<MediaContent> list, String title){
+        List<MediaContent> result = search(list, t -> t.getTitle().equals(title));
+        
+        if(loged){
+            try {
+                System.out.println("What rating do you give? ");
+                result.getFirst().setRating(scan.nextDouble());
+            } catch (InputMismatchException e) {
+                System.out.println("* Use the ',' not '.' in the number *");
+                scan.nextLine();
+                result.getFirst().setRating(scan.nextDouble());
+            }
+            
+            scan.nextLine();
+            System.out.println("Write your review... ");
+            result.getFirst().setReview(scan.nextLine());
+        }
+        
+        System.out.println("Necessary to login for this action!");
+    }
+
+    public boolean isLoged() {
+        return loged;
+    }
+
+    public void setLoged(boolean loged) {
+        this.loged = loged;
+    }
+    
 }
