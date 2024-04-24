@@ -71,8 +71,8 @@ public class User {
     }
     
     public void search(List<MediaContent> list, Predicate<MediaContent> predicate){
-        List<String> titles = list.stream().filter(predicate).map(MediaContent::getTitle).collect(Collectors.toList());
-        System.out.println(titles);
+        List<MediaContent> result = list.stream().filter(predicate).collect(Collectors.toList());
+        System.out.println(result);
     }
 
     public void searchByWord(List<MediaContent> list, String word){
