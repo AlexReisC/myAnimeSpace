@@ -31,7 +31,7 @@ public class Anime extends MediaContent{
  
     @Override
     public String toString() {
-        return "Title: " + getTitle() + " [" + type + "]" + ", Gender: " + getGender() + 
+        return "- " + getTitle() + " [" + type + "]" + ", Gender: " + getGender() + 
         ", Studio: " + studio + ", Episodes: " + episodes +  ", Rating: " + getRating() + "\n";
     }
 

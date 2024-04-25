@@ -22,7 +22,7 @@ public class Manga extends MediaContent{
     
     @Override
     public String toString() {
-        return "Title: " + getTitle() + " [" + type + "]" + ", Gender: " + getGender() + 
+        return "- " +getTitle() + " [" + type + "]" + ", Gender: " + getGender() + 
         ", Auhtor:" + getAuthor() + ", Chapters: " + getChapters() +  ", Rating: " + getRating() + "\n";
     }
 
