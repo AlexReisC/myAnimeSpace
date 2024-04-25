@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 
 import br.com.myAnimeSpace.model.MediaContent;
+import br.com.myAnimeSpace.repository.Space;
 
 public class User {
     private String name;
@@ -129,5 +130,9 @@ public class User {
         } else {
             System.out.println("Login is required!");
         }
+    }
+
+    public void vizualizeRanking(List<MediaContent> list){
+        Space.ranking(list);
     }
 }
