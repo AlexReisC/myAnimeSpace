@@ -122,7 +122,12 @@ public class User {
         this.loged = loged;
     }
     
-    public void addFavorite(){
-         
+    public void addFavorite(MediaContent mediaContent){
+        if (loged) {
+            favorites.add(mediaContent);
+            System.out.println("Sucess!");
+        } else {
+            System.out.println("Login is required!");
+        }
     }
 }
