@@ -1,13 +1,16 @@
 package br.com.myAnimeSpace.repository;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
-import br.com.myAnimeSpace.model.Anime;
-import br.com.myAnimeSpace.model.Manga;
+import br.com.myAnimeSpace.model.MediaContent;
 
 public class Space {
-    List<Anime> animes = new ArrayList<>();
-    List<Manga> mangas = new ArrayList<>();
-    
+    public static List<MediaContent> dataBase = new ArrayList<>();
+
+    public static void ranking(){
+        dataBase.sort(Comparator.comparingDouble(MediaContent::getRating).reversed());
+        dataBase.forEach(System.out::println);
+    }
 }
