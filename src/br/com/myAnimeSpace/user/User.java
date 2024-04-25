@@ -15,6 +15,7 @@ public class User {
     private String user;
     private String password;
     private List<MediaContent> favorites;
+    private List<MediaContent> watchList;
     private boolean loged = false;
     Scanner scan;
     
@@ -50,6 +51,18 @@ public class User {
     
     public List<MediaContent> getFavorites() {
         return favorites;
+    }
+
+    public boolean isLoged() {
+        return loged;
+    }
+
+    public void setLoged(boolean loged) {
+        this.loged = loged;
+    }
+
+    public List<MediaContent> getWatchList() {
+        return watchList;
     }
     
     @Override
@@ -114,19 +127,11 @@ public class User {
             System.out.println("Login is required!");
         }
     }
-
-    public boolean isLoged() {
-        return loged;
-    }
-
-    public void setLoged(boolean loged) {
-        this.loged = loged;
-    }
     
     public void addFavorite(MediaContent mediaContent){
         if (loged) {
             favorites.add(mediaContent);
-            System.out.println("Sucess!");
+            System.out.println("Favorited!");
         } else {
             System.out.println("Login is required!");
         }
@@ -135,4 +140,14 @@ public class User {
     public void vizualizeRanking(List<MediaContent> list){
         Space.ranking(list);
     }
+
+    public void addWatchList(MediaContent mediaContent){
+        if(loged){
+            watchList.add(mediaContent);
+            System.out.println("Added to your WatchList");
+        } else {
+            System.out.println("Login is required!");
+        }
+    }
+
 }
