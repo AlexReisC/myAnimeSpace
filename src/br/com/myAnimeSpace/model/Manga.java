@@ -4,11 +4,12 @@ import java.util.List;
 
 public class Manga extends MediaContent{
     private int chapters;
-    private final String type = "manga";
+    private final String type = "Manga";
 
     public Manga(String title, List<String> gender, String author, boolean status, int ageGroup,  int chapters) {
         super(title, gender, status, ageGroup);
         this.chapters = chapters;
+        this.setAuthor(author);
     }
 
     public int getChapters() {
@@ -21,8 +22,8 @@ public class Manga extends MediaContent{
     
     @Override
     public String toString() {
-        return "Manga [Title: " + getTitle() + ", Gender: " + getGender() + 
-        ", Auhtor:" + getAuthor() + ", Chapters: " + getChapters() +  ", Rating: " + getRating() + "]\n";
+        return "Title: " + getTitle() + " [" + type + "]" + ", Gender: " + getGender() + 
+        ", Auhtor:" + getAuthor() + ", Chapters: " + getChapters() +  ", Rating: " + getRating() + "\n";
     }
 
     public String getType() {

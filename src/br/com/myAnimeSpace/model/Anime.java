@@ -5,7 +5,7 @@ import java.util.List;
 public class Anime extends MediaContent{
     private int episodes;
     private String studio;
-    private final String type = "anime";
+    private final String type = "Anime";
 
     public Anime(String title, List<String> gender, boolean status, int ageGroup, int episodes, String studio) {
         super(title, gender, status, ageGroup);
@@ -31,8 +31,8 @@ public class Anime extends MediaContent{
  
     @Override
     public String toString() {
-        return "Anime [Title: " + getTitle() + ", Gender: " + getGender() + 
-        ", Studio: " + studio + ", Episodes: " + episodes +  ", Rating: " + getRating() + "]\n";
+        return "Title: " + getTitle() + " [" + type + "]" + ", Gender: " + getGender() + 
+        ", Studio: " + studio + ", Episodes: " + episodes +  ", Rating: " + getRating() + "\n";
     }
 
     public String getType() {
