@@ -9,8 +9,8 @@ import br.com.myAnimeSpace.model.MediaContent;
 public class Space {
     public static List<MediaContent> dataBase = new ArrayList<>();
 
-    public static void ranking(){
-        dataBase.sort(Comparator.comparingDouble(MediaContent::getRating).reversed());
-        dataBase.forEach(System.out::println);
+    public static void ranking(List<MediaContent> list){
+        list.sort(Comparator.comparingDouble(MediaContent::getRating).reversed());
+        list.forEach(System.out::println);
     }
 }
