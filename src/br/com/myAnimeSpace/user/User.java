@@ -57,7 +57,7 @@ public class User {
     }
 
     public boolean register(String user, String password){
-        if(password.length() >= 8 || user.length() >= 1){
+        if(password.length() >= 8 && user.length() >= 1){
             this.user = user;
             this.password = password;
             return true;
@@ -77,20 +77,20 @@ public class User {
         return result;
     }
 
-    public void searchByWord(List<MediaContent> list, String word){
-        System.out.println(search(list, t -> t.getTitle().contains(word)));
+    public List<MediaContent> searchByWord(List<MediaContent> list, String word){
+        return search(list, t -> t.getTitle().contains(word));
     }
 
-    public void searchByTitle(List<MediaContent> list, String title){
-        search(list, t -> t.getTitle().equals(title));
+    public List<MediaContent> searchByTitle(List<MediaContent> list, String title){
+        return search(list, t -> t.getTitle().equals(title));
     }
 
-    public void searchByAuthor(List<MediaContent> list, String author){
-        search(list, t -> t.getAuthor().equals(author));
+    public List<MediaContent> searchByAuthor(List<MediaContent> list, String author){
+        return search(list, t -> t.getAuthor().equals(author));
     }
 
-    public void searchByGender(List<MediaContent> list, String gender){
-        search(list, t -> t.getGender().contains(gender));
+    public List<MediaContent> searchByGender(List<MediaContent> list, String gender){
+        return search(list, t -> t.getGender().contains(gender));
     }
 
     public void reviewMedia(List<MediaContent> list, String title){
@@ -109,9 +109,9 @@ public class User {
             scan.nextLine();
             System.out.println("Write your review... ");
             result.getFirst().setReview(scan.nextLine());
+        } else {
+            System.out.println("Login is required!");
         }
-        
-        System.out.println("Necessary to login for this action!");
     }
 
     public boolean isLoged() {
@@ -122,4 +122,7 @@ public class User {
         this.loged = loged;
     }
     
+    public void addFavorite(){
+         
+    }
 }
