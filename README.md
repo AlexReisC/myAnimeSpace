@@ -20,7 +20,7 @@ Principal features:
 
 The tool used for the development was JAVA, that is a back-end language.
 
-### Requisitos Funcionais
+### Functional Requirements
 - FR1: The user is able to resgister and login
 - FR2: The user is able to search the anime/manga
 - FR3: The user is able evaluate the anime/manga
