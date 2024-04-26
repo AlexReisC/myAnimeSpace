@@ -150,4 +150,9 @@ public class User {
         }
     }
 
+    public boolean removeFromList(List<MediaContent> list, String title){
+        MediaContent found = searchByTitle(list, title).getFirst();
+        return found.equals(null) ? false : list.remove(found);
+    }
+    
 }
