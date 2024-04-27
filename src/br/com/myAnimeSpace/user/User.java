@@ -1,6 +1,7 @@
 package br.com.myAnimeSpace.user;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -85,9 +86,6 @@ public class User {
     
     public List<MediaContent> search(List<MediaContent> list, Predicate<MediaContent> predicate){
         List<MediaContent> result = list.stream().filter(predicate).collect(Collectors.toList());
-        if(result.isEmpty()){
-            System.out.println("No result found");
-        }
         return result;
     }
 
@@ -95,8 +93,12 @@ public class User {
         return search(list, t -> t.getTitle().contains(word));
     }
 
-    public List<MediaContent> searchByTitle(List<MediaContent> list, String title){
-        return search(list, t -> t.getTitle().equals(title));
+    public MediaContent searchByTitle(List<MediaContent> list, String title){
+        List<MediaContent> results = search(list, t -> t.getTitle().equals(title));
+        if (results.isEmpty()) {
+            throw new NoSuchElementException("No results found.");
+        }
+        return results.get(0);
     }
 
     public List<MediaContent> searchByAuthor(List<MediaContent> list, String author){
@@ -108,23 +110,27 @@ public class User {
     }
 
     public void reviewMedia(List<MediaContent> list, String title){
-        List<MediaContent> result = search(list, t -> t.getTitle().equals(title));
+        MediaContent result = searchByTitle(list, title);
         
-        if(loged){
-            try {
-                System.out.println("What rating do you give? ");
-                result.getFirst().setRating(scan.nextDouble());
-            } catch (InputMismatchException e) {
-                System.out.println("* Use the ',' not '.' in the number *");
+        try {
+            if(loged){
+                try {
+                    System.out.println("What rating do you give? ");
+                    result.setRating(scan.nextDouble());
+                } catch (InputMismatchException e) {
+                    System.out.println("* Use the ',' not '.' in the number *");
+                    scan.nextLine();
+                    result.setRating(scan.nextDouble());
+                }
+                
                 scan.nextLine();
-                result.getFirst().setRating(scan.nextDouble());
+                System.out.println("Write your review... ");
+                result.setReview(scan.nextLine());
+            } else {
+                System.out.println("Login is required!");
             }
-            
-            scan.nextLine();
-            System.out.println("Write your review... ");
-            result.getFirst().setReview(scan.nextLine());
-        } else {
-            System.out.println("Login is required!");
+        } catch (NoSuchElementException e) {
+            System.out.println("No results found");
         }
     }
     
@@ -151,8 +157,13 @@ public class User {
     }
 
     public boolean removeFromList(List<MediaContent> list, String title){
-        MediaContent found = searchByTitle(list, title).getFirst();
-        return found.equals(null) ? false : list.remove(found);
+        try{
+            MediaContent found = searchByTitle(list, title);
+            return list.remove(found);
+        } catch (NoSuchElementException e){
+            System.out.println("Nothing removed");
+            return false;
+        }
     }
     
 }
