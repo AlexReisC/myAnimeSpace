@@ -1,15 +1,12 @@
 package br.com.myAnimeSpace.model;
 
-import java.util.List;
-
 public class Manga extends MediaContent{
     private int chapters;
     private final String type = "Manga";
 
-    public Manga(String title, List<String> gender, String author, boolean status, int ageGroup,  int chapters) {
+    public Manga(String title, Gender gender, Status status, int ageGroup, int chapters) {
         super(title, gender, status, ageGroup);
         this.chapters = chapters;
-        this.setAuthor(author);
     }
 
     public int getChapters() {
@@ -23,7 +20,7 @@ public class Manga extends MediaContent{
     @Override
     public String toString() {
         return "- " +getTitle() + " [" + type + "]" + ", Gender: " + getGender() + 
-        ", Auhtor:" + getAuthor() + ", Chapters: " + getChapters() +  ", Rating: " + getRating() + "\n";
+        ", Author:" + getAuthor() + ", Chapters: " + getChapters() +  ", Rating: " + getRating() + "\n";
     }
 
     public String getType() {

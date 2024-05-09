@@ -1,13 +1,11 @@
 package br.com.myAnimeSpace.model;
 
-import java.util.List;
-
 public class Anime extends MediaContent{
     private int episodes;
     private String studio;
     private final String type = "Anime";
 
-    public Anime(String title, List<String> gender, boolean status, int ageGroup, int episodes, String studio) {
+    public Anime(String title, Gender gender, Status status, int ageGroup, int episodes, String studio) {
         super(title, gender, status, ageGroup);
         this.episodes = episodes;
         this.studio = studio;

@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
+import br.com.myAnimeSpace.model.Gender;
 import br.com.myAnimeSpace.model.MediaContent;
 import br.com.myAnimeSpace.repository.Space;
 
@@ -105,8 +106,8 @@ public class User {
         return search(list, t -> t.getAuthor().equals(author));
     }
 
-    public List<MediaContent> searchByGender(List<MediaContent> list, String gender){
-        return search(list, t -> t.getGender().contains(gender));
+    public List<MediaContent> searchByGender(List<MediaContent> list, Gender gender[]){
+        return search(list, t -> t.getGender().equals(gender));
     }
 
     public void reviewMedia(List<MediaContent> list, String title){

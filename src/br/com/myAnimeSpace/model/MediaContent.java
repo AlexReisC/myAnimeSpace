@@ -1,19 +1,16 @@
 package br.com.myAnimeSpace.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public abstract class MediaContent {
     private String title;
     private String synopsis;
-    private List<String> gender = new ArrayList<>();
+    private Gender gender;
     private String author;
-    private boolean status;
+    private Status status;
     private int ageGroup;
     private String review;
     private double rating;
     
-    public MediaContent(String title, List<String> gender, boolean status, int ageGroup) {
+    public MediaContent(String title, Gender gender, Status status, int ageGroup) {
         this.title = title;
         this.gender = gender;
         this.status = status;
@@ -36,28 +33,12 @@ public abstract class MediaContent {
         this.synopsis = synopsis;
     }
     
-    public List<String> getGender() {
-        return gender;
-    }
-    
-    public void setGender(List<String> gender) {
-        this.gender = gender;
-    }
-    
     public String getAuthor() {
         return author;
     }
     
     public void setAuthor(String author) {
         this.author = author;
-    }
-
-    public boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
     }
 
     public int getAgeGroup() {
@@ -78,6 +59,26 @@ public abstract class MediaContent {
 
     public void setRating(double rating) {
         this.rating = rating;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public void setAgeGroup(int ageGroup) {
+        this.ageGroup = ageGroup;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
     
         
