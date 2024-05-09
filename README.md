@@ -29,4 +29,4 @@ The tool used for the development was JAVA, that is a back-end language.
 - FR6: The system should be display a ranking of best animes/mangas
 
 ## Contribuitions
-Contribuitions are welcome! To contribuite, send a Pull Requset.
+Contribuitions are welcome! To contribuite, send a Pull Request.
